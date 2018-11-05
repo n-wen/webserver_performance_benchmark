@@ -108,12 +108,12 @@ public class ConcurrencyBench {
         if (now - lastReportTime > 1000) {
 
             long time = now - startTime;
-            double thoughput = ((double) bytesReceived / time) * 1000 / 1024 / 1024;
+            double throughput = ((double) bytesReceived / time) * 1000 / 1024 / 1024;
             double rps = ((double) requestsSent / time) * 1000;
 
             System.out
-                    .printf("time %ds, concurrency: %d, total requests: %d, thoughput: %.2fM/s, %.2f requests/seconds\n",
-                            time / 1000, connected, requestsSent, thoughput, rps);
+                    .printf("time %ds, concurrency: %d, total requests: %d, throughput: %.2fM/s, %.2f requests/seconds\n",
+                            time / 1000, connected, requestsSent, throughput, rps);
 
             lastReportTime = now;
         }
