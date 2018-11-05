@@ -10,6 +10,11 @@ data = {
         'concurrency': 273652,
         'throughput': 9.29,
         'rps': 4293.75
+    },
+    'http-kit': {
+        'concurrency': 395016,
+        'throughput': 12.11,
+        'rps': 5349.35
     }},
     'go': {'gin': {
         'concurrency': 268529,
