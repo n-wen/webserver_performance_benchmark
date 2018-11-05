@@ -53,12 +53,8 @@ class ServerBench(object):
 
 for lang, server_data in data.items():
     for server_name, server_bench in server_data.items():
-        # x.append(lang + server_name)
-        # concurrency.append(server_bench.get("concurrency"))
-        # throughput.append(server_bench.get("throughput"))
-        # rps.append(server_bench.get("rps"))
         server_list.append(ServerBench(
-            name=lang+server_name,
+            name="{}_{}".format(lang, server_name),
             concurrency=server_bench.get("concurrency"),
             throughput=server_bench.get("throughput"),
             rps=server_bench.get("rps"),
@@ -92,7 +88,7 @@ rps_rests = ax.bar(ind + width, rps, width,  label='rps' )
 ax.set_ylabel("amount")
 ax.set_title("benchmark for webservers")
 ax.set_xticks(ind)
-ax.set_xticklabels(x, rotation=45)
+ax.set_xticklabels(x, rotation=15)
 ax.legend()
 
 def autolabel(rects, xpos='center'):
@@ -116,4 +112,5 @@ def autolabel(rects, xpos='center'):
 # autolabel(throughput_rests, "center")
 # autolabel(rps, "right")
 # plt.show()
+plt.subplots_adjust(bottom=0.2)
 plt.savefig('./static/bench.png')
