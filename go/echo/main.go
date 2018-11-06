@@ -1,12 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
-	"time"
+	"github.com/labstack/echo"
 	"strconv"
+	"time"
 )
-
 
 const constStrUnit = "http-kit is a http server & client written from scrach for high performance clojure web applications, support async and websocket"
 
@@ -16,20 +15,20 @@ func main() {
 	for i:=0; i < 200; i++ {
 		constStr += constStrUnit
 	}
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		var length, err = strconv.Atoi(c.Query("length"))
+
+	e := echo.New()
+	e.GET("/", func(c echo.Context) error {
+		var length, err = strconv.Atoi(c.QueryParam("length"))
 		if err != nil {
 
 		}
-		c.String(200 , "%s", constStr[:length])
+		return c.String(http.StatusOK, constStr[:length])
 	})
 	s := &http.Server{
-		Addr:           ":3000",
-		Handler:        r,
+		Addr:           "0.0.0.0:3000",
 		ReadTimeout:    60 * time.Second,
 		WriteTimeout:   60 * time.Second,
 		IdleTimeout:    6000 * time.Second,
 	}
-	s.ListenAndServe()
+	e.Logger.Fatal(e.StartServer(s))
 }
