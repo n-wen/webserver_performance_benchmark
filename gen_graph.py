@@ -40,6 +40,13 @@ data = {
             'throughput': 8.74,
             'rps': 4149.91
         }},
+    'java': {
+        'springboot': {
+            'concurrency': 185500,
+            'throughput': 7.47,
+            'rps': 3615.75
+        }
+    }
 }
 
 concurrency = []
